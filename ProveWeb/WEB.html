@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GitHub Info</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $("button").click(function(){
+                $.get("https://api.github.com/users/" +$("input").val() , function(data){
+                    $("#nombre").text(data.login)
+                    $("#seguidores").text(data.followers)
+                    $("#repositorio").text(data.public_repos)
+                    $("#informacion").append(data.url)
+                },"json");
+            });
+
+        });
+
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <h1>GITHUB user INFO</h1>
+    <p>Introduce el usuario de github</p>
+
+    <input type="text"> <button>Enter</button>
+</div>
+<h5><b>Nombre:</b></h5>
+<div id="nombre"></div>
+<h5><b>Seguidores:</b></h5>
+<div id="seguidores"></div>
+<h5><b>Repositorio:</b></h5>
+<div id="repositorio"></div>
+<h5> <b>Información:</b></h5>
+<div id="informacion"></div>
+
+</body>
+
+
+
+</html>
